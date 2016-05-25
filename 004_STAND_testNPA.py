@@ -313,7 +313,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         createAddCS.click()
 
     def test_020delNPA(self):
-        time.sleep(2)
+        time.sleep(3)
         delButton = driver.find_element_by_name('yt1')
         delButton.click()
         time.sleep(1)

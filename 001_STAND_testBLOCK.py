@@ -110,7 +110,7 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             NewTitle.send_keys(' edit ')
             plus = driver.find_element_by_xpath('//form/div/div[2]/div[6]/div[2]/div/div[1]/div[2]/a')
             plus.click()
-            time.sleep(1)
+            time.sleep(2)
             newCat = driver.find_element_by_id('Category_S_NAME')
             newCat.send_keys('1')
             catOk = driver.find_element_by_id('catOk')
