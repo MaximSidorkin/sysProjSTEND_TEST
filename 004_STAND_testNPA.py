@@ -100,10 +100,10 @@ class DSeleniumTestCPForm(unittest.TestCase):
     def test_1FillingCPForm(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
-        time.sleep(1)
+        time.sleep(2)
         #имя контрольной точки
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
-        time.sleep(1)
+        time.sleep(2)
         #автор
         autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
         autorName.click()
@@ -127,30 +127,33 @@ class DSeleniumTestCPForm(unittest.TestCase):
     def test_2TriggersCPTest(self):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)
+        time.sleep(2)
         #туда
+        driver.implicitly_wait(20)
         triggerKPI = driver.find_element_by_css_selector('span.switch-right')
         triggerKPI.click()
-        time.sleep(1)
+        time.sleep(2)
         triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
         triggerPriority.click()
-        time.sleep(1)
+        time.sleep(2)
         triggerDone = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
         triggerDone.click()
-        time.sleep(1)
+        time.sleep(2)
         #и обратно
+        driver.implicitly_wait(20)
         triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
         triggerKPI.click()
-        time.sleep(1)
+        time.sleep(2)
         triggerPriority.click()
-        time.sleep(1)
+        time.sleep(2)
         triggerDone.click()
-        time.sleep(1)
+        time.sleep(2)
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
     def test_3ConfirmCPCreating(self):
+        driver.implicitly_wait(20)
         finishButton = driver.find_element_by_name('yt0').click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
@@ -158,12 +161,14 @@ class DSeleniumTestCPForm(unittest.TestCase):
 
 class ESeleniumEditCP(unittest.TestCase):
     def test_1ClickEditButton(self):
+        driver.implicitly_wait(20)
         editButton = driver.find_element_by_name('yt0').click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(3)
 
     def test_2editCP(self):
+        driver.implicitly_wait(20)
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         triggerPrior = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
@@ -174,11 +179,13 @@ class ESeleniumEditCP(unittest.TestCase):
     def test_3NPACreate(self):
         time.sleep(3)
         nap = driver.find_element_by_xpath("//div[16]/div/span/span/span/span[2]").click()
-        time.sleep(1)
+        time.sleep(2)
         nap = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Норматив" + Keys.ENTER)
-        time.sleep(1)
+        time.sleep(2)
+        driver.implicitly_wait(20)
         EditProject = driver.find_element_by_name('yt0').click()
         time.sleep(3)
+        driver.implicitly_wait(20)
         EditProject = driver.find_element_by_name('yt0').click()
         time.sleep(2)
         assert "ЭОР" in driver.title
@@ -222,7 +229,8 @@ class ESeleniumEditCP(unittest.TestCase):
         planDate1.send_keys(Keys.ENTER)
 
         # Получение согласований, определенных регламентами
-        time.sleep(3)
+        time.sleep(4)
+        driver.implicitly_wait(20)
         responsibleName2 = driver.find_element_by_xpath('//div[5]/div[2]/div/div/span/span/span/span[2]') # ответственный Получение согласований, определенных регламентами
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -253,9 +261,11 @@ class ESeleniumEditCP(unittest.TestCase):
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
         time.sleep(3)
+        driver.implicitly_wait(20)
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
         # отчищаем обязательные поля в форме НПА
+        driver.implicitly_wait(20)
         responsibleName1 = driver.find_element_by_xpath('//div[5]/div/div/div/span/span/span/span[2]')
         responsibleName1.click()
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -265,6 +275,7 @@ class ESeleniumEditCP(unittest.TestCase):
         planDate1.clear()
         planDate1.send_keys(Keys.ENTER)
 
+        driver.implicitly_wait(20)
         responsibleName2 = driver.find_element_by_xpath('//div[5]/div[2]/div/div/span/span/span/span[2]')
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -275,6 +286,7 @@ class ESeleniumEditCP(unittest.TestCase):
         planDate2.clear()
         planDate2.send_keys(Keys.ENTER)
 
+        driver.implicitly_wait(20)
         responsibleName3 = driver.find_element_by_xpath('//div[5]/div[3]/div/div/span/span/span/span[2]')# ответственный Утверждение руководителя департамента
         responsibleName3.click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -295,6 +307,7 @@ class ESeleniumEditCP(unittest.TestCase):
 
     def test_6NPANotCreate(self):
         time.sleep(3)
+        driver.implicitly_wait(20)
         driver.find_element_by_id('cp_title')
         assert "ЭОР" in driver.title
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -305,7 +318,8 @@ class ESeleniumEditCP(unittest.TestCase):
         assert "ЭОР" in driver.title
         driver.implicitly_wait(20)
         ESeleniumEditCP.test_4NPAFillingForm(self)
-        time.sleep(1)
+        time.sleep(3)
+        driver.implicitly_wait(20)
         CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
         CheckPiontID.click()
         CheckPiontID.send_keys('Контрольная точка для НПА')
@@ -318,9 +332,11 @@ class ESeleniumEditCP(unittest.TestCase):
         status2.clear()
         status2.send_keys('15.05.2016')
         # 3 - в процессе
+        driver.implicitly_wait(20)
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
-        time.sleep(2)
+        time.sleep(4)
+        driver.implicitly_wait(20)
         driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
         #driver.find_element_by_partial_link_text("Срок исполнения (факт)")          # исполнен
         driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
@@ -335,19 +351,22 @@ class ESeleniumEditCP(unittest.TestCase):
         nameAddCS = driver.find_element_by_xpath('(//textarea[@id="Checkpoint_TITLE"])[2]')
         nameAddCS.click()
         nameAddCS.send_keys('Проверка поля Название')
-        time.sleep(2)
+        time.sleep(4)
+        driver.implicitly_wait(20)
         autorName = driver.find_element_by_xpath('//div[2]/form/div[2]/div/span/span')
         autorName.click()
         autorName.send_keys('Багреева')
         autorName.send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(4)
+        driver.implicitly_wait(20)
         responsibleName = driver.find_element_by_xpath('//div[2]/form/div[3]/div/span/span[1]/span/span[2]')
         responsibleName.click()
         responsibleName = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName.click()
         responsibleName.send_keys('А')
         responsibleName.send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(4)
+        driver.implicitly_wait(20)
         #date = driver.find_element_by_xpath('(//input[@id="Checkpoint_DEADLINE]")[2]')
         date = driver.find_element_by_xpath ("//form[@id='npa-mission-form']/div[5]/div/input")
         date.click()
@@ -356,8 +375,10 @@ class ESeleniumEditCP(unittest.TestCase):
         createAddCS.click()
 
         time.sleep(2)
+        driver.implicitly_wait(20)
         delButton = driver.find_element_by_name('yt1').click()
-        time.sleep(1)
+        time.sleep(2)
+        driver.implicitly_wait(20)
         yesButton = driver.find_element_by_xpath('//div[3]/div/button').click()
 
         print(' finish!')

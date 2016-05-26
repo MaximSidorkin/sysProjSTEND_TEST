@@ -60,7 +60,7 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
-        time.sleep(2)
+        time.sleep(3)
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')))
         btn1 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')
@@ -72,9 +72,9 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
     def test_2SearchBlock(self):
         SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[1]/input')
         SrcSelenBlock.send_keys('Selenium')
-        time.sleep(2)
+        time.sleep(3)
         GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
-        time.sleep(2)
+        time.sleep(3)
 
     if __name__ == '__main__':
         unittest.main()
@@ -85,7 +85,7 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         nameOfpjct = driver.find_element_by_id("Checkpoint_TITLE")#.send_keys("Тестовый проект созданный Selenium")
         nameOfpjct.click()  #test
         nameOfpjct.send_keys("Тестовый проект созданный Selenium")
-        time.sleep(2)
+        time.sleep(3)
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         autorDown = driver.find_element_by_xpath("//div[@id='DIV_AUTHOR_MISSION']/div/span/span/span/span[2]").click()
         autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("б" + Keys.ENTER)
