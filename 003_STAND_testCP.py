@@ -33,7 +33,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
         menu.click()
-        time.sleep(4)
+        time.sleep(3)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
 
