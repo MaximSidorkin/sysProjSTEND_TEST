@@ -65,8 +65,8 @@ class CSeleniumCreateNewBlock_3(unittest.TestCase):
             btn2 = driver.find_element_by_name("yt0")
             btn2.click()
             time.sleep(3)
-            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/form/div/div[2]/div[23]/input[2]')))
-            time.sleep(3)
+            #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/form/div/div[2]/div[23]/input[2]')))
+            #time.sleep(3)
             _ = driver.find_element_by_id('Checkpoint_TITLE_em_')
 
             if __name__ == '__main__':
@@ -91,10 +91,10 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
             searchButton = driver.find_element_by_id('search-show')
             searchButton.click()
-            textFild = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/input')
+            textFild = driver.find_element_by_id('search-text')
             textFild.send_keys('Создал Selenium _для редактирования')
             textFild.send_keys(Keys.ENTER)
-
+            time.sleep(2)
             if __name__ == '__main__':
                 unittest.main()
 
@@ -103,12 +103,11 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')))
             editButton = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')
             editButton.click()
-            _ = wait.until(
-                EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div[2]/form/div/div[2]/div[24]/button')))
+            #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div[2]/form/div/div[2]/div[24]/button')))
             time.sleep(2)
             NewTitle = driver.find_element_by_id('Checkpoint_TITLE')
             NewTitle.send_keys(' edit ')
-            plus = driver.find_element_by_xpath('//form/div/div[2]/div[6]/div[2]/div/div[1]/div[2]/a')
+            plus = driver.find_element_by_css_selector('i.fa.fa-plus')
             plus.click()
             time.sleep(2)
             newCat = driver.find_element_by_id('Category_S_NAME')
@@ -117,7 +116,7 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             catOk.click()
 
             time.sleep(1)
-            plus = driver.find_element_by_xpath('//form/div/div[2]/div[6]/div[2]/div/div[1]/div[2]/a')
+            plus = driver.find_element_by_css_selector('i.fa.fa-plus')
             plus.click()
             time.sleep(1)
             newCat2 = driver.find_element_by_id('Category_S_NAME')
@@ -130,7 +129,7 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             driver.save_screenshot('EditBlock.png')
 
         def test_3NegativEditBlock(self):
-            plus = driver.find_element_by_xpath('//form/div/div[2]/div[6]/div[2]/div/div[1]/div[2]/a')
+            plus = driver.find_element_by_css_selector('i.fa.fa-plus')
             plus.click()
             driver.implicitly_wait(10)
             catOk = driver.find_element_by_id('catOk')
@@ -143,8 +142,8 @@ class DSeleniumEditBlock_4(unittest.TestCase):
 
         def test_4DragAndDrop(self):
             time.sleep(2)
-            cat2Elem = driver.find_element_by_xpath('//div[6]/div[2]/div/div[2]/div/div/ul/li[2]/div/div[2]/i')
-            cat1Elem = driver.find_element_by_xpath('//div[6]/div[2]/div/div[2]/div/div/ul/li[1]/div/div[2]/i')
+            cat2Elem = driver.find_element_by_xpath('//li[2]/div/div[2]/i')
+            cat1Elem = driver.find_element_by_css_selector('i.fa.fa-exchange')
             ActionChains(driver).drag_and_drop(cat2Elem, cat1Elem).perform()
             # поставить проверку
             time.sleep(2)
