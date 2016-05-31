@@ -150,9 +150,11 @@ class DSeleniumTestCPForm(unittest.TestCase):
         triggerKPI.click()
         time.sleep(2)
         triggerPriority.click()
-        time.sleep(2)
-        triggerDone.click()
-        time.sleep(2)
+        #time.sleep(2)
+        #triggerDone = driver.find_element_by_xpath("//div[20]/div/div/div/label")
+        #triggerDone.click()
+        time.sleep(3)
+        driver.implicitly_wait(20)
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
