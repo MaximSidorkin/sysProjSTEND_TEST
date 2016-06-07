@@ -105,16 +105,16 @@ class DSeleniumTestCPForm(unittest.TestCase):
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
         time.sleep(2)
         #автор
-        autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
+        autorName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
         autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(2)
         #ответственный
-        responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
+        responsibleName = driver.find_element_by_xpath('//div[11]/div/span/span/span/span[2]')
         responsibleName.click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('A' + Keys.ENTER)
+        responsibleNameText.send_keys('А' + Keys.ENTER)
         time.sleep(2)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
@@ -141,8 +141,8 @@ class DSeleniumTestCPForm(unittest.TestCase):
         time.sleep(2)
         #и обратно
         driver.implicitly_wait(20)
-        triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
-        triggerKPI.click()
+        #triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
+        #triggerKPI.click()
         time.sleep(2)
         triggerPriority.click()
         time.sleep(2)
@@ -178,7 +178,8 @@ class ESeleniumEditCP(unittest.TestCase):
 
     def test_3NPACreate(self):
         time.sleep(3)
-        nap = driver.find_element_by_xpath("//div[16]/div/span/span/span/span[2]").click()
+        nap = driver.find_element_by_xpath("//div[17]/div/span/span[1]/span/span[1]").click()
+        # nap = driver.find_element_by_xpath("//div[16]/div/span/span/span/span[2]").click()
         time.sleep(2)
         nap = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Норматив" + Keys.ENTER)
         time.sleep(2)
@@ -212,7 +213,7 @@ class ESeleniumEditCP(unittest.TestCase):
         # ответственный Согласование отраслевого управления
         responsibleName1 = driver.find_element_by_xpath('//div[5]/div/div/div/span/span/span/span[2]').click()  # ответственный Согласование у руководителя департамента
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleName1.send_keys('A')
+        responsibleName1.send_keys('А')
         #responsibleName1.send_keys(Keys.ARROW_DOWN)
         responsibleName1.send_keys(Keys.ENTER)
         # проверим все обязательные элементы ещё раз
@@ -235,7 +236,7 @@ class ESeleniumEditCP(unittest.TestCase):
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName2.click()
-        responsibleName2.send_keys('A')
+        responsibleName2.send_keys('А')
         responsibleName2.send_keys(Keys.ENTER)
         planDate2 = driver.find_element_by_id('date_106_76')# срок исполнения Получение согласований, определенных регламентами
         planDate2.click()
@@ -248,7 +249,7 @@ class ESeleniumEditCP(unittest.TestCase):
         responsibleName3.click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName3.click()
-        responsibleName3.send_keys('A')
+        responsibleName3.send_keys('А')
         responsibleName3.send_keys(Keys.ENTER)
         planDate3 = driver.find_element_by_id('date_106_83')# срок исполнения Передача в правовое управление
         planDate3.click()

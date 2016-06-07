@@ -110,17 +110,17 @@ class DSeleniumTestCPForm(unittest.TestCase):
         time.sleep(2)
         driver.implicitly_wait(20)
         #автор
-        autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
+        autorName = driver.find_element_by_xpath('//div[10]/div/span/span[1]/span/span[1]')
         autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(3)
         driver.implicitly_wait(20)
         #ответственный
-        responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
+        responsibleName = driver.find_element_by_xpath('//div[11]/div/span/span[1]/span/span[1]')
         responsibleName.click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('A' + Keys.ENTER)
+        responsibleNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(4)
         driver.implicitly_wait(20)
         #сроки
@@ -130,32 +130,14 @@ class DSeleniumTestCPForm(unittest.TestCase):
 
 
     def test_2TriggersCPTest(self):
-        time.sleep(3)
-        driver.implicitly_wait(20)
-        EditProject = driver.find_element_by_name('yt0')
-        EditProject.send_keys(Keys.PAGE_DOWN)
-        time.sleep(4)
-        #туда
-        triggerKPI = driver.find_element_by_css_selector('span.switch-right')
-        triggerKPI.click()
-        time.sleep(2)
-        triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
-        triggerPriority.click()
-        time.sleep(2)
-        triggerDone = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
-        triggerDone.click()
-        time.sleep(2)
-        #и обратно
-        triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
-        triggerKPI.click()
-        time.sleep(2)
-        triggerPriority.click()
-        #time.sleep(2)
-        #triggerDone = driver.find_element_by_xpath("//div[20]/div/div/div/label")
-        #triggerDone.click()
-        time.sleep(3)
-        driver.implicitly_wait(20)
 
+        time.sleep(3)
+#
+        driver.implicitly_wait(20)
+        EditProject = driver.find_element_by_name('yt0').send_keys(Keys.PAGE_DOWN)
+        time.sleep(2)
+
+#
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -198,12 +180,23 @@ class ESeleniumEditCP(unittest.TestCase):
         assert "404" not in driver.title
 
 class FSeleniumSeekAndDestroy(unittest.TestCase):
+    def test_1DelCP(self):
+        DelCP = driver.find_element_by_name('yt2').click()
+        time.sleep(1)
+        driver.implicitly_wait(20)
+        elemYes = driver.find_element_by_xpath('html/body/div[5]/div[3]/div/button[1]')
+        elemYes.click()
+'''
     def test_1FilterSetting(self):
         assert "ЭОР" in driver.title
+
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
         FilterSetting.click()
-        SnipClick = driver.find_element_by_xpath('//nav/div/div[2]/ul[2]/li/ul/li[3]/div/ul/li[1]/div/label[1]/div')
-        SnipClick.click()
+        time.sleep(1)
+        SnipClick = driver.find_element_by_link_text('Багреева').click()
+        #SnipClick.click()
+        #SnipClick = driver.find_element_by_xpath('//nav/div/div[2]/ul[2]/li/ul/li[3]/div/ul/li[1]/div/label[1]/div')
+        #SnipClick.click()
         ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
         ConfirmFilter.click()
         driver.implicitly_wait(20)
@@ -215,6 +208,7 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
         time.sleep(2)
 
     def test_3BlockAndProjectListing(self):
+        driver.implicitly_wait(20)
         findBlock = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div/table/tbody/tr/td[1]/h4/strong/a')
         findBlock.click()
         time.sleep(2)
@@ -240,6 +234,7 @@ class FSeleniumSeekAndDestroy(unittest.TestCase):
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-
-    if __name__ == '__main__':
-        unittest.main()
+        unittest.removeResult()
+        '''
+if __name__ == '__main__':
+    unittest.main()
