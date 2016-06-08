@@ -306,6 +306,7 @@ class ESeleniumEditCP(unittest.TestCase):
 
         #подтверждаем невозможность создания
 
+
     def test_6NPANotCreate(self):
         time.sleep(3)
         driver.implicitly_wait(20)
