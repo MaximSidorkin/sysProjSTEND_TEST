@@ -56,9 +56,9 @@ class CSeleniumCreateNewCP(unittest.TestCase):
     def test_1OpenForm(self):
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        btn1 = driver.find_element_by_id("create-cp")
-        btn1.click()
-        time.sleep(1)
+        #btn1 = driver.find_element_by_id("create-cp")
+        #btn1.click()
+        time.sleep(2)
         assert "ЭОР" in driver.title
         elem = driver.find_element_by_link_text('Поиск')
         elem.click()
