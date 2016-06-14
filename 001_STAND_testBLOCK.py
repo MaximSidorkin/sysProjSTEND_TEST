@@ -10,7 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Firefox()
-driver.get("http://test.eor.gosapi.ru/")
+driver.get("https://test.eor.gosapi.ru/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
