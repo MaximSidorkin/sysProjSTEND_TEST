@@ -60,17 +60,17 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         btn1 = driver.find_element_by_id("create-cp")
         btn1.click()
-        time.sleep(3)
+        time.sleep(5)
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
-        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')))
-        btn1 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[1]/span/i')
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div[1]/span/i')))
+        btn1 = driver.find_element_by_xpath('//div/div[1]/div[1]/span/i')
         btn1.click()
 
     if __name__ == '__main__':
         unittest.main()
 
     def test_2SearchBlock(self):
-        SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/div[1]/div[2]/div[1]/input')
+        SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[1]/div/div[1]/div[2]/div[1]/input')
         SrcSelenBlock.send_keys('Selenium')
         time.sleep(3)
         GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
@@ -81,7 +81,7 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
 
     def test_3NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
-        _ = driver.find_element_by_xpath("//form/div/div[2]/div[2]/div/div[4]/b")
+        _ = driver.find_element_by_xpath("//form/div/div[2]/div[1]/div/div[4]/b")
         nameOfpjct = driver.find_element_by_id("Checkpoint_TITLE")#.send_keys("Тестовый проект созданный Selenium")
         nameOfpjct.click()  #test
         nameOfpjct.send_keys("Тестовый проект созданный Selenium")

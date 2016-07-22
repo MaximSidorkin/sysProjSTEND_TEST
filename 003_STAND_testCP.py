@@ -110,14 +110,14 @@ class DSeleniumTestCPForm(unittest.TestCase):
         time.sleep(2)
         driver.implicitly_wait(20)
         #автор
-        autorName = driver.find_element_by_xpath('//div[10]/div/span/span[1]/span/span[1]')
+        autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION')
         autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(3)
         driver.implicitly_wait(20)
         #ответственный
-        responsibleName = driver.find_element_by_xpath('//div[11]/div/span/span[1]/span/span[1]')
+        responsibleName = driver.find_element_by_id("DIV_ID_RESPONSIBLE")
         responsibleName.click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleNameText.send_keys('Б' + Keys.ENTER)
