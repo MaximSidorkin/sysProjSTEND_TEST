@@ -133,8 +133,8 @@ class DSeleniumTestCPForm(unittest.TestCase):
         triggerKPI = driver.find_element_by_css_selector('span.switch-right')
         triggerKPI.click()
         time.sleep(2)
-        triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
-        triggerPriority.click()
+        #triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
+        #triggerPriority.click()
         time.sleep(2)
         triggerDone = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
         triggerDone.click()
@@ -171,8 +171,8 @@ class ESeleniumEditCP(unittest.TestCase):
         driver.implicitly_wait(20)
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        triggerPrior = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
-        triggerDone = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
+        #triggerPrior = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
+        #triggerDone = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
