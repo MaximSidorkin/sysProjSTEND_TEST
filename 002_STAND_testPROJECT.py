@@ -96,6 +96,8 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
 
     def test_5ConfirmCreatingPjct(self):
         time.sleep(3)
+        driver.find_element_by_name("yt0").send_keys(Keys.PAGE_DOWN)
+        time.sleep(2)
         CreateButton = driver.find_element_by_name("yt0").click()
 
 class DSeleniumEditProject(unittest.TestCase):
@@ -107,7 +109,7 @@ class DSeleniumEditProject(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)
+        time.sleep(3)
         EditProject.click()
 
     def test_2editProject(self):
