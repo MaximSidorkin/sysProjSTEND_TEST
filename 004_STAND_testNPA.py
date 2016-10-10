@@ -99,22 +99,26 @@ class CSeleniumCreateNewCP(unittest.TestCase):
 class DSeleniumTestCPForm(unittest.TestCase):
     def test_1FillingCPForm(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
+        #_ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(2)
         #имя контрольной точки
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
-        time.sleep(2)
+        time.sleep(7)
         #автор
-        autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION')
-        autorName.click()
-        autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        autorNameText.send_keys('Б' + Keys.ENTER)
-        time.sleep(2)
+        #autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION')
+        #autorName.click()
+        #autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        #autorNameText.send_keys('Б' + Keys.ENTER)
+        #time.sleep(2)
         #ответственный
-        responsibleName = driver.find_element_by_id('DIV_ID_RESPONSIBLE')
+        driver.implicitly_wait(10)
+        responsibleName = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]")
         responsibleName.click()
+        time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('А' + Keys.ENTER)
+        responsibleNameText.send_keys('б' + Keys.ENTER)
+        time.sleep(2)
+        driver.implicitly_wait(10)
         time.sleep(2)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
