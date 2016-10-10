@@ -56,8 +56,8 @@ class CSeleniumCreateNewCP(unittest.TestCase):
     def test_1OpenForm(self):
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        btn1 = driver.find_element_by_id("create-cp")
-        btn1.click()
+        #btn1 = driver.find_element_by_id("create-cp")
+        #btn1.click()
         time.sleep(1)
         driver.implicitly_wait(20)
         assert "ЭОР" in driver.title
@@ -110,19 +110,19 @@ class DSeleniumTestCPForm(unittest.TestCase):
         time.sleep(2)
         driver.implicitly_wait(20)
         #автор
-        autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION')
+        autorName = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]")
         autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(3)
         driver.implicitly_wait(20)
         #ответственный
-        responsibleName = driver.find_element_by_id("DIV_ID_RESPONSIBLE")
-        responsibleName.click()
-        responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('Б' + Keys.ENTER)
-        time.sleep(4)
-        driver.implicitly_wait(20)
+        #responsibleName = driver.find_element_by_id("DIV_ID_RESPONSIBLE")
+        #responsibleName.click()
+        #responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        #esponsibleNameText.send_keys('Б' + Keys.ENTER)
+        #time.sleep(4)
+        #driver.implicitly_wait(20)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
