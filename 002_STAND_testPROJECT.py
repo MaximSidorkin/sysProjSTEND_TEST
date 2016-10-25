@@ -19,7 +19,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_1LoginInEORDev(self):
         assert "Login" in driver.title
         #wait = WebDriverWait(driver, 10)
-        #_ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
+        _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         time.sleep(4)
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
@@ -29,7 +29,8 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_2Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        time.sleep(5)
+        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
         if __name__ == '__main__':
             unittest.main()
