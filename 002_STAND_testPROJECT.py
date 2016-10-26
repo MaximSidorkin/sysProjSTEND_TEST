@@ -1,7 +1,6 @@
 import time
 import unittest
 global str
-import page_objects
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -12,13 +11,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Firefox()
 driver.get("https://test.eor.gosapi.ru/")
 driver.maximize_window()
-wait = WebDriverWait(driver, 10)
-
+wait = WebDriverWait(driver, 20)
 
 class ASeleniumLogin_1(unittest.TestCase):
-    def test_1LoginInEORDev(self):
+    def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
-        #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         time.sleep(4)
         elem = driver.find_element_by_id("LoginForm_username")
@@ -26,18 +23,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
-    def test_2Not500or404andLoginIsVisible(self):
+
+    def test_002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(5)
-        #_ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
-        if __name__ == '__main__':
-            unittest.main()
-
-class BSeleniumOpenAllPjct_2(unittest.TestCase):
-    def test_1OpenAllPjct(self):
-        wait = WebDriverWait(driver, 10)
+    def test_003_OpenAllPjct(self):
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         menu = driver.find_element_by_css_selector("i.entypo-menu")
@@ -46,22 +39,15 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
 
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_2Not500or404(self):
+    def test_004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-        if __name__ == '__main__':
-            unittest.main()
-
-class CSeleniumCreateNewPjct_3(unittest.TestCase):
-    def test_1OpenForm(self):
+    def test_005_OpenForm(self):
         # new
+        wait = WebDriverWait(driver, 20)
         time.sleep(4)
-        wait = WebDriverWait(driver, 10)
-        _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
+        wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         time.sleep(3)
         searchButton = driver.find_element_by_id('search-show').click()
         time.sleep(2)
@@ -78,35 +64,11 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         btn1.click()
         time.sleep(10)
         _ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать проект."
-        #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div/span/i')))
-        # new
 
-        # old
-        #wait = WebDriverWait(driver, 10)
-        #_ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        #btn1 = driver.find_element_by_id("create-cp")
-        #btn1.click()
-        #time.sleep(5)
-        #_ = driver.find_element_by_class_name('warn-cp')    #есть текст "Вы собираетесь создать блок."
-        #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div/div[1]/div[1]/span/i')))
-        #btn1 = driver.find_element_by_xpath('//div/div[1]/div[1]/span/i')
-        #btn1.click()
-        # old
-
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_2SearchBlock(self):
-        #SrcSelenBlock = driver.find_element_by_xpath('//form/div/div[2]/div[1]/div/div[1]/div[2]/div[1]/input')
-        #SrcSelenBlock.send_keys('Selenium')
+    def test_006_SearchBlock(self):
         time.sleep(3)
-        #GetTarget = driver.find_element(By.CLASS_NAME, "find-text").click()
-        #time.sleep(3)
 
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_3NewPjctFormBlock(self):
+    def test_007_NewPjctFormBlock(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btnCloseForm')))      #test
         _ = driver.find_element_by_xpath("//form/div/div[2]/div[1]/div/div[4]/b")
         nameOfpjct = driver.find_element_by_id("Checkpoint_TITLE")#.send_keys("Тестовый проект созданный Selenium")
@@ -121,14 +83,13 @@ class CSeleniumCreateNewPjct_3(unittest.TestCase):
         pjctCurator = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
         driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('багреева' + Keys.ENTER)
 
-    def test_5ConfirmCreatingPjct(self):
+    def test_008_ConfirmCreatingPjct(self):
         time.sleep(3)
         driver.find_element_by_name("yt0").send_keys(Keys.PAGE_DOWN)
         time.sleep(2)
         CreateButton = driver.find_element_by_name("yt0").click()
 
-class DSeleniumEditProject(unittest.TestCase):
-    def test_1CheckPage(self):
+    def test_009_CheckPage(self):
         # проверить элементы на странице
         time.sleep(5)
         driver.set_page_load_timeout(5)
@@ -139,22 +100,19 @@ class DSeleniumEditProject(unittest.TestCase):
         time.sleep(3)
         EditProject.click()
 
-    def test_2editProject(self):
+    def test_010_editProject(self):
         time.sleep(4)
         ShortName = driver.find_element_by_id("Checkpoint_SHORT_NAME").send_keys("Краткое наименование")
         FullName = driver.find_element_by_id("Checkpoint_TITLE").send_keys(" edit ")
         SaveEdit = driver.find_element_by_name('yt0').click()
 
-    if __name__ == '__main__':
-        unittest.main()
-
-    def test_3AllRight(self):
+    def test_011_AllRight(self):
         time.sleep(4)
         _ = driver.find_element_by_id('C_TITLE').text == ' edit '
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    def test_4SeekAndDestroy(self):
+    def test_012_SeekAndDestroy(self):
        time.sleep(3)
        assert "ЭОР" in driver.title
        driver.find_element_by_id('search-text').clear()

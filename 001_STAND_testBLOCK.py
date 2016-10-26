@@ -12,12 +12,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 driver = webdriver.Firefox()
 driver.get("https://test.eor.gosapi.ru/")
 driver.maximize_window()
-wait = WebDriverWait(driver, 10)
+wait = WebDriverWait(driver, 20)
 
 class ASeleniumAutoTest_1(unittest.TestCase):
-        def test_1CreatedInEORDev(self):
+        def test_001_CreatedInEORDev(self):
             assert "Login" in driver.title
-            # wait = WebDriverWait(driver, 10)
             _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
             elem = driver.find_element_by_id("LoginForm_username")
             elem.send_keys("Ipad")
@@ -26,18 +25,12 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             driver.save_screenshot('LoginPassPage.png')
             elem.send_keys(Keys.RETURN)
 
-        def test_2Not500or404andLoginIsVisible(self):
+        def test_002_Not500or404andLoginIsVisible(self):
             assert "500" not in driver.title  # проверка на 500/404 ошибку
             assert "404" not in driver.title
             _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
-            if __name__ == '__main__':
-                unittest.main()
-
-class BSeleniumOpenAllPjct_2(unittest.TestCase):
-        def test_1OpenAllPjct(self):
-            wait = WebDriverWait(driver, 10)
-            # time.sleep(3)
+        def test_003_OpenAllPjct(self):
             _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
             assert "ЭОР" in driver.title
             menu = driver.find_element_by_css_selector("i.entypo-menu")
@@ -46,17 +39,12 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
             allpj = driver.find_element_by_link_text("Все проекты")
             allpj.click()
 
-        def test_2Not500or404(self):
+        def test_004_Not500or404(self):
             assert "500" not in driver.title  # проверка на 500/404 ошибку
             assert "404" not in driver.title
 
-            if __name__ == '__main__':
-                unittest.main()
-
-class CSeleniumCreateNewBlock_3(unittest.TestCase):
-        def test_1CreateNewBlock(self):
+        def test_005_CreateNewBlock(self):
             time.sleep(4)
-            wait = WebDriverWait(driver, 10)
             _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
             btn1 = driver.find_element_by_id("create-cp")
             btn1.click()
@@ -65,29 +53,17 @@ class CSeleniumCreateNewBlock_3(unittest.TestCase):
             btn2 = driver.find_element_by_name("yt0")
             btn2.click()
             time.sleep(4)
-            #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/form/div/div[2]/div[23]/input[2]')))
-            #time.sleep(3)
             _ = driver.find_element_by_id('Checkpoint_TITLE_em_')
 
-            if __name__ == '__main__':
-                unittest.main()
-
-        def test_2CreateNewBlockRight(self):
-            wait = WebDriverWait(driver, 10)
+        def test_006_CreateNewBlockRight(self):
             elemTitle = driver.find_element_by_id("Checkpoint_TITLE")
             elemTitle.send_keys("Создал Selenium _для редактирования")
             btn2 = driver.find_element_by_name("yt0")
             btn2.click()
             driver.save_screenshot('CreateNewBlock.png')
 
-            if __name__ == '__main__':
-                unittest.main()
-
-class DSeleniumEditBlock_4(unittest.TestCase):
-        # находим только что созданный блок
-        def test_1FindBlock(self):
+        def test_007_FindBlock(self):
             time.sleep(3)
-            wait = WebDriverWait(driver, 10)
             _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
             searchButton = driver.find_element_by_id('search-show')
             searchButton.click()
@@ -95,15 +71,12 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             textFild.send_keys('Создал Selenium _для редактирования')
             textFild.send_keys(Keys.ENTER)
             time.sleep(3)
-            if __name__ == '__main__':
-                unittest.main()
 
         # редактируем блок
-        def test_2EditBlock(self):
+        def test_008_EditBlock(self):
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')))
             editButton = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[2]/button[1]')
             editButton.click()
-            #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div[2]/form/div/div[2]/div[24]/button')))
             time.sleep(3)
             NewTitle = driver.find_element_by_id('Checkpoint_TITLE')
             NewTitle.send_keys(' edit ')
@@ -128,7 +101,7 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             time.sleep(4)
             driver.save_screenshot('EditBlock.png')
 
-        def test_3NegativEditBlock(self):
+        def test_009_NegativEditBlock(self):
             plus = driver.find_element_by_css_selector('i.fa.fa-plus')
             plus.click()
             driver.implicitly_wait(10)
@@ -140,7 +113,7 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             catCancel = driver.find_element_by_id('catCancel')
             catCancel.click()
 
-        def test_4DragAndDrop(self):
+        def test_010_DragAndDrop(self):
             time.sleep(3)
             cat2Elem = driver.find_element_by_xpath('//li[2]/div/div[2]/i')
             cat1Elem = driver.find_element_by_css_selector('i.fa.fa-exchange')
@@ -150,7 +123,6 @@ class DSeleniumEditBlock_4(unittest.TestCase):
             saveThisBlock = driver.find_element_by_name('yt0')
             saveThisBlock.click()
             driver.save_screenshot('AllRight.png')
-
 
 if __name__ == '__main__':
     unittest.main()
