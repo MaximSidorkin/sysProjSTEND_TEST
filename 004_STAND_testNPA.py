@@ -177,6 +177,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         # finishButton2 = driver.implicitly_wait(10)
         finishButton2.click()
         time.sleep(4)
+        try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
+            #time.sleep(1)
+            driver.find_element_by_xpath('//div[3]/div/button').click()
+            #time.sleep(1)
+            print('\n Модальное окно "Внимание!", относящееся к НПА, появилось и было закрыто \n')
+        except:
+            print('\n Модальное окно "Внимание!", относящееся к НПА, не появилось \n')
         planDate1 = driver.find_element_by_id('date_106_75')  # срок исполнения Согласование отраслевого управления
         planDate1.click()
         planDate1.send_keys('12345')
