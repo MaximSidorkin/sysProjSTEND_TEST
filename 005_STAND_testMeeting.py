@@ -96,7 +96,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         project = driver.find_element_by_css_selector('span.input-group-addon').click()
         time.sleep(1)
-        project = driver.find_element_by_xpath("//div[2]/div/div/input").send_keys('Тестовый проект созданный Selenium edit')
+        project = driver.find_element_by_xpath("//div[2]/div/div/input").send_keys('Selenium')
         time.sleep(1)
         project = driver.find_element_by_css_selector('span.find-text').click()
         driver.find_element_by_xpath('//div[2]/div/button').click()     # кликнуть по кнопке "выбрать"
