@@ -1,5 +1,7 @@
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -24,10 +26,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
 
+        print('\n 1. Логинимся в систему\n')
+
     def test_002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+
+        print(' 2. Ошибок 404 и 500 нет и логин пользователя отображается\n')
 
     def test_003_OpenAllPjct(self):
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
@@ -38,9 +44,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
 
+        print(' 3. Переходим в раздел "Все проекты"\n')
+
     def test_004_Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print(' 4. Ошибок 404 и 500 нет\n')
 
     def test_005_OpenForm(self):
         wait = WebDriverWait(driver, 10)
@@ -57,6 +67,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print(' 5. В поиске задаём слово Selenium\n')
+
     def test_006_FindBlock(self):
         #находим блок
         findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
@@ -64,6 +76,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print(' 6. Находим блок, ошибок 404 и 500 нет\n')
 
     def test_007_FindProject(self):
         #находим проект
@@ -73,6 +87,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print(' 7. Переходим от блока к проекту, ошибок 404 и 500 нет\n')
+
     def test_008_CreateCP(self):
         #создаем контрольную точку
         CreateCP = driver.find_element_by_id('create-cp')
@@ -80,6 +96,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print(' 8. Переходим в раздел контрльных точек \n и нажимаем Создать, ошибок 404 и 500 нет\n')
 
     def test_009_FillingCPForm(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
@@ -102,12 +120,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
+        print(' 9. Заполняем форму контрольной точки, ошибок 404 и 500 нет\n')
+
     def test_010_TriggersCPTest(self):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(2)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print(' 10. Проверяем тригеры, ошибок 404 и 500 нет\n')
 
     def test_011_ConfirmCPCreating(self):
         driver.implicitly_wait(20)
@@ -116,6 +138,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "404" not in driver.title
         time.sleep(5)
 
+        print(' 11. Сохраняем контрольную точку, ошибок 404 и 500 нет\n')
+
     def test_012_ClickEditButton(self):
         driver.implicitly_wait(20)
         editButton = driver.find_element_by_name('yt0').click()
@@ -123,12 +147,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "404" not in driver.title
         time.sleep(3)
 
+        print(' 12. Нажимаем кнопку Редактировать, ошибок 404 и 500 нет\n')
+
     def test_013_editCP(self):
         driver.implicitly_wait(20)
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print(' 13. Выбираем форму реализации - НПА, сохраняем изменения\n и заново нажимаем Редактировать \n')
 
     def test_014_NPACreate(self):
         time.sleep(3)
@@ -145,6 +173,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "ЭОР" in driver.title
         NPACr = driver.find_element_by_xpath('//button[text()="Создать НПА"]').click()
         time.sleep(2)
+
+        print(' 14. Частично заполняем форму НПА, пробуем сохранить\n видим сообщения об обязательности заоления полей\n и заполняем обязательные поля полностью. Сохраняем.')
 
     def test_015_NPAFillingForm(self):
         time.sleep(7)
@@ -216,6 +246,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         planDate3.send_keys('12345')
         planDate3.send_keys(Keys.ENTER)
 
+        print(' 15. Очищаем обязательные поля НПА и пробуем сохранить\n')
+
     def test_016_EditNPA(self):
         time.sleep(4)
         assert "ЭОР" in driver.title
@@ -264,6 +296,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
         #подтверждаем невозможность создания
+        print(' 16. Выводится сообщение о невозможности этого действия,\n обязательные поля должны быть заполнены\n')
 
     def test_017_NPANotCreate(self):
         time.sleep(3)
@@ -272,6 +305,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "ЭОР" in driver.title
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        print(' 17. Снова заполняем обязательные поля \n')
 
     def test_018_FillingFormAgain(self):
         time.sleep(2)
@@ -283,6 +318,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
         CheckPiontID.click()
         CheckPiontID.send_keys('Контрольная точка для НПА')
+
+        print(' 18. Снова заполняем обязательные поля \n')
 
     def test_019_StatusCheck(self):
         # 1 - исполнено
@@ -299,6 +336,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.implicitly_wait(20)
         driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
         driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
+
+        print(' 18. Изменяем статусы заполеннных полей (просрочен/в процессе). Сохраняем \n')
 
     def test_020_AddCurrentState(self):
         addCS = driver.find_element_by_css_selector("div a[ data-original-title='Создать поручение']")
@@ -338,8 +377,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         driver.implicitly_wait(20)
         yesButton = driver.find_element_by_xpath('//div[3]/div/button').click()
-
-        print(' finish!')
+        print(' 19. Создаем ещё одно поручение через нопку + на форме НПА\n (проверка обязательности полей включена) \n')
 
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_CHECKPOINT_AND_NPA_test_stand.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ НПА ИЗ РАЗДЕЛА ВСЕ ПРОЕКТЫ',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)
