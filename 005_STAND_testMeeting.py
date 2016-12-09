@@ -1,7 +1,7 @@
 # СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ СОВЕЩАНИЯ ИЗ БЛОКА "РАСПИСАНИЕ"
 import unittest
 import time
-import HTMLTestRunner
+import HTMLTestRunner, sys
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -281,4 +281,5 @@ if __name__ == '__main__':
         title='СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ СОВЕЩАНИЯ ИЗ РАСПИСАНИЯ И РАБОЧЕГО СТОЛА',
         description='Отчет по тестированию'
     )
-    runner.run(suite)
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)
