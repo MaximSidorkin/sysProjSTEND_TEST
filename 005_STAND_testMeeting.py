@@ -14,7 +14,7 @@ driver = webdriver.Firefox()
 driver.get("https://test.eor.gosapi.ru/site/login")
 driver.maximize_window()
 time.sleep(2)
-wait = WebDriverWait(driver, 20)
+wait = WebDriverWait(driver, 50)
 driver.implicitly_wait(20)
 
 class ASeleniumLogin_1(unittest.TestCase):
@@ -182,7 +182,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
         time.sleep(2)
-        driver.find_element(By.XPATH, ".//*[text()='Да']/..").click()
+        driver.find_element(By.XPATH, "//div[3]/div/button").click()
         print('тест №13 - удаляем совещание созданное на весь день')
 
     def test_014_CreateMeetingFromDT(self):
