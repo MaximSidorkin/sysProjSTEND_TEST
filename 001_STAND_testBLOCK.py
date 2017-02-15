@@ -132,18 +132,6 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
             print('9. Пытаемся добавить категорию без названия')
 
-        def test_010_DragAndDrop(self):
-            time.sleep(3)
-            cat2Elem = driver.find_element_by_xpath('//li[2]/div/div[2]/i')
-            cat1Elem = driver.find_element_by_css_selector('i.fa.fa-exchange')
-            ActionChains(driver).drag_and_drop(cat2Elem, cat1Elem).perform()
-            # поставить проверку
-            time.sleep(3)
-            saveThisBlock = driver.find_element_by_name('yt0')
-            saveThisBlock.click()
-            driver.save_screenshot('AllRight.png')
-
-            print('10. проверяем возможность изменения порядка категории\n путём перетаскивания drug-and-drop')
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
