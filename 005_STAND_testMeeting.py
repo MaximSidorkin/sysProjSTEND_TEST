@@ -70,9 +70,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('19:01' + Keys.ENTER)
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').send_keys('20:01' + Keys.ENTER)
-        triggerAllDay = driver.find_element_by_css_selector('span.switch-right').click()
-        time.sleep(2)
-        triggerAllDay = driver.find_element_by_css_selector('span.switch-left').click()
+        #triggerAllDay = driver.find_element_by_css_selector('span.switch-right').click()
+        #time.sleep(2)
+        #triggerAllDay = driver.find_element_by_css_selector('span.switch-left').click()
         time.sleep(1)
         triggerOffer = driver.find_element_by_xpath('//form[@id="meetings-form"]/div[13]/div/div/div/span[2]').click()
         time.sleep(2)
@@ -177,12 +177,15 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('тест №12 - создаем совещание на весь день')
 
     def test_013_DelAllDayMeeting(self):
-        #newMeet = driver.find_element_by_xpath("//span[. = 'All Day Selenium' ]").click()
-        driver.find_element_by_css_selector('span.fc-title').click()
-        time.sleep(2)
+        driver.implicitly_wait(10)
+        newMeet = driver.find_element_by_xpath(".//*[text()='All Day Selenium']/..").click()
+        #driver.find_element_by_css_selector('span.fc-title').click()
+        time.sleep(1)
         driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
         time.sleep(2)
-        driver.find_element(By.XPATH, "//div[3]/div/button").click()
+        driver.find_element(By.XPATH, ".//*[text()='Да']/..").click()
+        #_ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[3]/div/button")))
+        #driver.find_element(By.XPATH, "//div[3]/div/button").click()
         print('тест №13 - удаляем совещание созданное на весь день')
 
     def test_014_CreateMeetingFromDT(self):
@@ -234,10 +237,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('тест №17 - создаем поучение и заполняем его форму')
 
     def test_018_CreateMeetingCopy(self):
+        driver.implicitly_wait(10)
         time.sleep(3)
         driver.find_element_by_link_text("Расписание").click()
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'add-meeting')))
-        driver.implicitly_wait(10)
+        time.sleep(3)
         driver.find_element_by_xpath("//span[. = '19:08 - 20:08' ]").click()
         time.sleep(3)
         driver.find_element(By.XPATH, ".//*[text()='Создать копию']/..").click()
