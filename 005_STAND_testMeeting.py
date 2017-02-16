@@ -235,7 +235,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         driver.find_element_by_id('btn_close').click()
         print('тест №17 - создаем поучение и заполняем его форму')
-
+#
     def test_018_CreateMeetingCopy(self):
         driver.implicitly_wait(10)
         time.sleep(3)
