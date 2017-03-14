@@ -95,9 +95,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         editButton = driver.find_element_by_xpath("//button[2]").click()
         time.sleep(3)
         project = driver.find_element_by_css_selector('span.input-group-addon').click()
-        time.sleep(1)
-        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div/div/input')))
-        project = driver.find_element_by_xpath("//div[2]/div/div/input").send_keys('Selenium')
+        time.sleep(3)
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/div/div[2]/div/div/input')))
+        project = driver.find_element_by_xpath("//div[3]/div/div/div[2]/div/div/input").send_keys('Selenium')
         time.sleep(1)
         project = driver.find_element_by_css_selector('span.find-text').click()
         driver.find_element_by_xpath('//div[2]/div/button').click()     # кликнуть по кнопке "выбрать"
@@ -121,8 +121,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         # deadline
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123'+Keys.ENTER)
         # проект
-        driver.find_element_by_xpath('//div[2]/div/div/div/div/div/span').click()
-        driver.find_element_by_css_selector('input.form-control').send_keys('контрольная точка созданная Selenium')
+        driver.find_element_by_css_selector('i.fa.fa-angle-down').click()
+        time.sleep(5)
+        driver.find_element_by_css_selector('div.input-group.search-field > input.form-control').send_keys('контрольная точка созданная Selenium')
         time.sleep(4)
         # находим в выпадающем списке нужный пункт
         driver.implicitly_wait(10)

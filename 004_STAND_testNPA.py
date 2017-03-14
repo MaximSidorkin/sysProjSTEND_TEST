@@ -209,9 +209,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(4)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
-            #time.sleep(1)
+            time.sleep(1)
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            #time.sleep(1)
+            time.sleep(1)
             print('\n Модальное окно "Внимание!", относящееся к НПА, появилось и было закрыто \n')
         except:
             print('\n Модальное окно "Внимание!", относящееся к НПА, не появилось \n')
