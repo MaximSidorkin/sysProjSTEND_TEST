@@ -131,7 +131,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         driver.find_element_by_css_selector('span.find-text').click()
         time.sleep(1)
-        driver.find_element_by_xpath('//div/div[3]/span[2]').send_keys(Keys.PAGE_DOWN)
+        #driver.find_element_by_xpath('//div/div[3]/span[2]').send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         driver.find_element_by_xpath('//div/div[3]/span[2]').click()
         time.sleep(2)
