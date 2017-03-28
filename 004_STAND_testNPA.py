@@ -368,7 +368,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         createAddCS1 = driver.find_element_by_xpath('//div[3]/span[2]')
         time.sleep(1)
-        createAddCS1.send_keys(Keys.PAGE_DOWN)
+        #createAddCS1.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         createAddCS1.click()
 
