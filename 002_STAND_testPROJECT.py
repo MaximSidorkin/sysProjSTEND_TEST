@@ -161,6 +161,8 @@ class ASeleniumLogin_1(unittest.TestCase):
        elemYes.click()
 
        print('12. Находим проект заново через поиск, и удаляем его')
+       time.sleep(2)
+       driver.close()
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

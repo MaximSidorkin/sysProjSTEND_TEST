@@ -379,6 +379,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.implicitly_wait(20)
         yesButton = driver.find_element_by_xpath('//div[3]/div/button').click()
         print(' 19. Создаем ещё одно поручение через нопку + на форме НПА\n (проверка обязательности полей включена) \n')
+        time.sleep(3)
+        driver.close()
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

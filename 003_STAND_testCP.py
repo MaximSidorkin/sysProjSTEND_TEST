@@ -186,6 +186,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         elemYes.click()
 
         print('\n 15. Удаляем контрольную точку')
+        time.sleep(2)
+        driver.close()
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

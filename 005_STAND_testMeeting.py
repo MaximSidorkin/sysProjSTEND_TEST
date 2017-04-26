@@ -278,6 +278,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath("//div[@id='notes']/div/div/div[2]/a/i").click()
         print('тест №23 - закрываем форму комментария')
 
+        time.sleep(3)
+        driver.close()
+
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin_1))

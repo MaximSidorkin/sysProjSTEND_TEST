@@ -1,4 +1,4 @@
-import time
+import time, datetime
 import unittest
 import HTMLTestRunner, sys
 global str
@@ -15,6 +15,9 @@ driver = webdriver.Chrome()
 driver.get("https://test.eor.gosapi.ru/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 20)
+test_time = datetime.datetime.now()
+test_day = test_time.day
+test_month = test_time.month
 
 class ASeleniumAutoTest_1(unittest.TestCase):
         def test_001_CreatedInEORDev(self):
@@ -28,6 +31,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             elem.send_keys(Keys.RETURN)
 
             print('1. Логинимся в систему')
+            print('ДАТА ТЕСТА: ', test_day, '/', test_month)
 
         def test_002_Not500or404andLoginIsVisible(self):
             assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -69,7 +73,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
 
         def test_006_CreateNewBlockRight(self):
             elemTitle = driver.find_element_by_id("Checkpoint_TITLE")
-            elemTitle.send_keys("Создал Selenium _для редактирования")
+            elemTitle.send_keys("Создал Selenium _для редактирования",test_day,'/',test_month)
             btn2 = driver.find_element_by_name("yt0")
             btn2.click()
             driver.save_screenshot('CreateNewBlock.png')
@@ -82,7 +86,7 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             searchButton = driver.find_element_by_id('search-show')
             searchButton.click()
             textFild = driver.find_element_by_id('search-text')
-            textFild.send_keys('Создал Selenium _для редактирования')
+            textFild.send_keys('Создал Selenium _для редактирования',test_day,'/',test_month)
             textFild.send_keys(Keys.ENTER)
             time.sleep(3)
 
@@ -132,6 +136,17 @@ class ASeleniumAutoTest_1(unittest.TestCase):
             catCancel.click()
 
             print('9. Пытаемся добавить категорию без названия')
+
+        def test_010_SeveAndDelBlock(self):
+            time.sleep(2)
+            driver.find_element_by_name('yt0').click()
+            time.sleep(2)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//td[2]/button[2]')))
+            driver.find_element_by_xpath('//td[2]/button[2]').click()
+            driver.find_element_by_xpath("//div[3]/div/button").click()
+            time.sleep(2)
+            driver.close()
+            print('\n 10. Удаляем только что созданный блок')
 
 
 if __name__ == '__main__':
