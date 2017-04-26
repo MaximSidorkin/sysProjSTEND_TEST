@@ -124,7 +124,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         # проект
         driver.find_element_by_css_selector('i.fa.fa-angle-down').click()
         time.sleep(5)
-        driver.find_element_by_css_selector('div.input-group.search-field > input.form-control').send_keys('контрольная точка созданная Selenium')
+        driver.find_element_by_css_selector('div.input-group.search-field > input.form-control').send_keys('Selenium')
         time.sleep(4)
         # находим в выпадающем списке нужный пункт
         driver.implicitly_wait(10)
