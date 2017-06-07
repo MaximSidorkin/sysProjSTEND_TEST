@@ -11,8 +11,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://test.eor.gosapi.ru/")
+pgs = 'https://task.eor.gosapi.ru/pgs/'
+dev = 'https://dev.eor.gosapi.ru/new/'
+
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 20)
 
@@ -92,11 +94,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         _ = driver.find_element_by_class_name('warn-cp').text == 'проект'   # test
         initDown = driver.find_element_by_xpath("//div[@id='DIV_INITIATOR_ID']/div/span/span/span/span[2]").click()
-        initName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("б" + Keys.ENTER)
+        initName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Б" + Keys.ENTER)
         pjctManger = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
-        pjctMangerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("а" + Keys.ENTER)
+        pjctMangerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("А" + Keys.ENTER)
         pjctCurator = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('багреева' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Б' + Keys.ENTER)
 
         print('7. Заполняем форму проекта')
 

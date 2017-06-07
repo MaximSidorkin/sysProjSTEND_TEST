@@ -11,8 +11,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://test.eor.gosapi.ru/")
+pgs = 'https://task.eor.gosapi.ru/pgs/'
+dev = 'https://dev.eor.gosapi.ru/new/'
+
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 20)
 test_time = datetime.datetime.now()

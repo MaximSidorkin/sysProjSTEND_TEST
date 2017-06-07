@@ -11,8 +11,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 #
 # global variable
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://test.eor.gosapi.ru/")
+pgs = 'https://task.eor.gosapi.ru/pgs/'
+dev = 'https://dev.eor.gosapi.ru/new/'
+
+driver.get(pgs)
 driver.maximize_window()
 time.sleep(2)
 wait = WebDriverWait(driver, 50)
@@ -65,7 +67,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         #place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
         responsibleName = driver.find_element_by_xpath('//div[8]/div/span/span/span/span[2]').click()
         time.sleep(2)
-        responsibleName = driver.find_element_by_xpath('//body[@id="ui-id-1"]/span/span/span/input').send_keys('Багреева' + Keys.ENTER)
+        responsibleName = driver.find_element_by_xpath('//body[@id="ui-id-1"]/span/span/span/input').send_keys('Selenium' + Keys.ENTER)
         comment = driver.find_element_by_id('MeetingsData_S_COMMENT').send_keys('комментарий к совещанию')
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('19:01' + Keys.ENTER)
@@ -118,7 +120,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Название поручения Selenium')
         # ответственный
         driver.find_element_by_xpath('//div[6]/div/span/span/span/span').click()
-        driver.find_element_by_xpath('//span/input').send_keys('ip'+Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Selenium'+Keys.ENTER)
         # deadline
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123'+Keys.ENTER)
         # проект
