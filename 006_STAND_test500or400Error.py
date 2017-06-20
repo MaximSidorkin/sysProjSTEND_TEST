@@ -18,10 +18,11 @@ tronov = 'https://tronov.eor.gosapi.ru/'
 vragov = 'https://vragov.eor.gosapi.ru/'
 surin = 'https://surin.eor.gosapi.ru/'
 pgs = 'https://task.eor.gosapi.ru/pgs/'
+oracle = 'https://task.eor.gosapi.ru/oracle/'
 
 driver = webdriver.Chrome()
 
-driver.get(pgs)
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -419,7 +420,7 @@ if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumAutoTest_1))
     # File
-    buf = open("at_for_500and404_stand_test.html", 'wb')
+    buf = open("at_for_500and404_stand_ORACLE.html", 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
         stream=buf,
         title='ПРОВЕРКА ВСЕХ РАЗДЕЛОВ ЭОР НА ОШИБКИ 500 И 404',

@@ -13,8 +13,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Chrome()
 pgs = 'https://task.eor.gosapi.ru/pgs/'
 dev = 'https://dev.eor.gosapi.ru/new/'
+oracle = 'https://task.eor.gosapi.ru/oracle/'
 
-driver.get(pgs)
+driver.get(oracle)
 driver.maximize_window()
 time.sleep(2)
 wait = WebDriverWait(driver, 50)
@@ -287,7 +288,7 @@ if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
     # File
-    buf = open("at_for_MEETING_stand_test.html", 'wb')
+    buf = open("at_for_MEETING_stand_ORACLE.html", 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
         stream=buf,
         title='СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ СОВЕЩАНИЯ ИЗ РАСПИСАНИЯ И РАБОЧЕГО СТОЛА',
