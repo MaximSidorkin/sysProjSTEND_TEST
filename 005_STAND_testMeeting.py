@@ -25,11 +25,8 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
-        elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
-        elem.send_keys(Keys.RETURN)
+        driver.find_element_by_id("LoginForm_username").send_keys("Ipad")
+        driver.find_element_by_id("LoginForm_password").send_keys("ipad"+Keys.RETURN)
         print('тест №1 - логинимся в систему')
 
     def test_002_Not500or404andLoginIsVisible(self):
@@ -63,9 +60,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('Совещение созданное Selenium')
         invite = driver.find_element_by_id('MeetingsData_S_INVITED').send_keys('Внешнее приглашение Selenium')
-        #unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
-        #unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Соловьев Е' + Keys.ENTER)
-        #place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
         responsibleName = driver.find_element_by_xpath('//div[8]/div/span/span/span/span[2]').click()
         time.sleep(2)
         responsibleName = driver.find_element_by_xpath('//body[@id="ui-id-1"]/span/span/span/input').send_keys('Selenium' + Keys.ENTER)
@@ -74,16 +68,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('19:01' + Keys.ENTER)
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').send_keys('20:01' + Keys.ENTER)
-        #triggerAllDay = driver.find_element_by_css_selector('span.switch-right').click()
-        #time.sleep(2)
-        #triggerAllDay = driver.find_element_by_css_selector('span.switch-left').click()
         time.sleep(1)
         triggerOffer = driver.find_element_by_xpath('//form[@id="meetings-form"]/div[13]/div/div/div/span[2]').click()
         time.sleep(2)
         triggerOffer = driver.find_element_by_xpath("//form[@id='meetings-form']/div[13]/div/div/div/span").click()
-        driver.save_screenshot('C:\PyTest\inish.png')
         print('тест №5 - заполняем форму создания совещания')
-    #@unittest.skip('Test Skipped1')
 
     def test_006_Confirm(self):
         time.sleep(2)
@@ -133,9 +122,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.implicitly_wait(10)
         time.sleep(1)
         driver.find_element_by_css_selector('span.find-text').click()
-        time.sleep(1)
-        #driver.find_element_by_xpath('//div/div[3]/span[2]').send_keys(Keys.PAGE_DOWN)
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element_by_xpath('//div/div[3]/span[2]').click()
         time.sleep(2)
         print('тест №8 - создаем поучение и заполняем его форму')
@@ -166,7 +153,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         driver.implicitly_wait(15)
         driver.find_element(By.XPATH, "//div[3]/div/button").click()
-        # driver.find_element(By.XPATH, ".//*[text()='Да']/..").click()
         print('тест №11 - удаляем созданное совещание')
 
     def test_012_AllDayMeeting(self):
@@ -184,13 +170,10 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_013_DelAllDayMeeting(self):
         driver.implicitly_wait(10)
         newMeet = driver.find_element_by_xpath(".//*[text()='All Day Selenium']/..").click()
-        #driver.find_element_by_css_selector('span.fc-title').click()
         time.sleep(1)
         driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
         time.sleep(2)
         driver.find_element(By.XPATH, ".//*[text()='Да']/..").click()
-        #_ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[3]/div/button")))
-        #driver.find_element(By.XPATH, "//div[3]/div/button").click()
         print('тест №13 - удаляем совещание созданное на весь день')
 
     def test_014_CreateMeetingFromDT(self):
@@ -201,13 +184,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(5)
         # создаем совещание
         driver.find_element_by_xpath('//tr[94]/td[2]').click()
-        time.sleep(2)
         # заполняем форму совещания
         # имя уникально
+        _ = wait.until(EC.element_to_be_clickable((By.ID, 'MeetingsData_S_NAME')))
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('Совещание с рабочего стола')
         invite = driver.find_element_by_id('MeetingsData_S_INVITED').send_keys('Внешнее приглашение Selenium')
-        #unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
-        #unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Багреева' + Keys.ENTER)
         place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
         comment = driver.find_element_by_id('MeetingsData_S_COMMENT').send_keys('комментарий к совещанию')
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
@@ -227,7 +208,6 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_016_SearchDTMeeting(self):
         time.sleep(5)
-        #driver.implicitly_wait(10)
         newMeet = driver.find_element_by_xpath("//span[. = '19:08 - 20:08' ]")
         newMeet.click()
         time.sleep(4)
@@ -264,7 +244,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_020_printComment(self):
         driver.find_element_by_name('notes').click()
         time.sleep(4)
-        commentText = driver.find_element_by_id('NoteMeeting').click()  # send_keys('Hello, World!')
+        commentText = driver.find_element_by_id('NoteMeeting').click()
         driver.implicitly_wait(10)
         time.sleep(4)
         commentText = driver.find_element_by_xpath('//textarea').send_keys(' Hello, World! ')
